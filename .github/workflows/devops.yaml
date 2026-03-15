@@ -1,12 +1,41 @@
 # Developing GitHub Actions Workflow for CI/CD
 
-#name: DevOps CICD Pipeline
+name: DevOps CICD Pipeline
 
-#on: push
+on: 
+push:
+  branches:
+    - main
+  paths-ignore:
+    - ./manifests
 
-#jobs:
-# devops-ci:
-#   runs-on: ubuntu-latest
+jobs:
+  devops-ci:
+    runs-on: ubuntu-latest
 
-#   steps:
-#   - name:
+    steps:
+    - name: Checkout
+      uses: uses: actions/checkout@v6.0.2
+    - name: Docker Login
+      uses: docker/login-action@v4.0.0
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v7.0.0
+      with:
+        file: ./Dockerfile
+        tags: ojpascale/devops-python:${{ github.sha }}
+        push: true
+    - name: Update Image Tag In Manifest File
+      run: |
+        pip install yq
+      yq -Yi '.spec.template.spec.containers[0].image = "ojpascale/devops-python:${{ github.sha }}"' ./manifests/ovia-deploy.yaml
+
+    - name: Commit and Push Code
+      run: |
+        git config --global user.name "Priest"
+        git config --global user.email "paycenonoli@yahoo.com"
+        git commit -am "Updating image tag in manifest using Actions"
+        git push origin main
+
