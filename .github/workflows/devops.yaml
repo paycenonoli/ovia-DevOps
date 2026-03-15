@@ -30,7 +30,7 @@ jobs:
     - name: Update Image Tag In Manifest File
       run: |
         pip install yq
-      yq -Yi '.spec.template.spec.containers[0].image = "ojpascale/devops-python:${{ github.sha }}"' ./manifests/ovia-deploy.yaml
+        yq -Yi '.spec.template.spec.containers[0].image = "ojpascale/devops-python:${{ github.sha }}"' ./manifests/ovia-deploy.yaml
 
     - name: Commit and Push Code
       run: |
