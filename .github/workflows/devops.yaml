@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: uses: actions/checkout@v6.0.2
+      uses: actions/checkout@v6.0.2
     - name: Docker Login
       uses: docker/login-action@v4.0.0
       with:
