@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ovia-deploy
+  name: ovia-deploy
+  namespace: devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ovia-deploy
+  template:
+    metadata:
+      labels:
+        app: ovia-deploy
+    spec:
+      containers:
+      - image: ojpascale/devops-python:v1
+        name: devops-python
