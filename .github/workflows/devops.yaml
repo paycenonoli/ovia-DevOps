@@ -3,11 +3,11 @@
 name: DevOps CICD Pipeline
 
 on: 
-push:
-  branches:
-    - main
-  paths-ignore:
-    - ./manifests
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ./manifests
 
 jobs:
   devops-ci:
