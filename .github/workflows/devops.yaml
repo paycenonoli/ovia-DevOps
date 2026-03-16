@@ -56,7 +56,10 @@ jobs:
 
     - name: Login via ArgoCD CLI
       run: |
-        argocd login localhost:8080 --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
+        argocd login argocd-server.argocd.svc.cluster.local \
+        --username admin \
+        --password ${{ secrets.ARGOCD_PASSWORD }} \
+        --insecure
 
     - name: Syncing argocd application
       run: |
