@@ -39,5 +39,6 @@ jobs:
         git config --global user.name "Priest"
         git config --global user.email "paycenonoli@yahoo.com"
         git commit -am "Updating image tag in manifest using Actions"
+        git pull --rebase origin main
         git push origin main
 
