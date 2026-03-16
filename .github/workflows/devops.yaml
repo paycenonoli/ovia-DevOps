@@ -49,11 +49,10 @@ jobs:
     steps:
     - name: Installing ArgoCD CLI on Runner
       run: |
-        curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 
-        sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd 
-        rm argocd-linux-amd64  
-        sudo chmod +x argocd
-        sudo mv argocd /usr/local/bin/
+         curl -sSL -o argocd \
+         https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+         chmod +x argocd
+         sudo mv argocd /usr/local/bin/
 
     - name: Login via ArgoCD CLI
       run: |
