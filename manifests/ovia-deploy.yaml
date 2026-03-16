@@ -16,5 +16,5 @@ spec:
         app: ovia-deploy
     spec:
       containers:
-        - image: ojpascale/devops-python:a454c0d271c3da900bc9867d01fee94d16d86082
+        - image: ojpascale/devops-python:187ab46def1f1a2bfb5ca0e4c87ea21dd2625434
           name: devops-python
